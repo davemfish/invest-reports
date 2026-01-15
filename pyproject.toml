@@ -12,6 +12,7 @@ dependencies = [
   "matplotlib",
   "jinja2",
   "geopandas",
+  "fiona",
   "altair"
 ]
 

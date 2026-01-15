@@ -158,13 +158,14 @@ def report(file_registry, args_dict, model_spec, target_html_filepath):
         os.mkdir(images_dir)
 
     rank_vars = ['R_hab', 'R_wind', 'R_wave', 'R_surge', 'R_relief']
-    exposure_geo = geopandas.read_file(file_registry['coastal_exposure'])
+    exposure_geo = geopandas.read_file(
+        file_registry['coastal_exposure'], engine='fiona')
     if 'R_geomorph' in exposure_geo:
         rank_vars.append('R_geomorph')
     tooltip_vars = ['exposure'] + rank_vars
 
     landmass_geo = geopandas.read_file(
-        file_registry['clipped_projected_landmass'])
+        file_registry['clipped_projected_landmass'], engine='fiona')
     extent_feature, xy_ratio = get_geojson_bbox(exposure_geo)
     landmass_chart = chart_landmass(
         landmass_geo, clip=True, extent_feature=extent_feature)
@@ -342,7 +343,8 @@ def report(file_registry, args_dict, model_spec, target_html_filepath):
     facetted_histograms_source_list = [model_spec.get_output(
         'intermediate_exposure').path]
 
-    wave_energy_geo = geopandas.read_file(file_registry['wave_energies'])
+    wave_energy_geo = geopandas.read_file(
+        file_registry['wave_energies'], engine='fiona')
     wave_var = variable_label_lookup['wave']
     wave_energy_geo = wave_energy_geo.join(
         intermediate_df[['shore_id', wave_var]].set_index(
