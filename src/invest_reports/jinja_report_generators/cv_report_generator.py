@@ -14,16 +14,6 @@ LOGGER = logging.getLogger(__name__)
 
 TEMPLATE = jinja_env.get_template('coastal_vulnerability.html')
 
-# vegafusion (`altair.data_transformers.enable("vegafusion")`)
-# can perform transformations before embedding
-# data in the chart's spec in order to conserve space.
-# But vegafusion does not support geodataframe data - and geometries are
-# not something we transform anyway. Plus, vegafusion seems incompatible
-# with `disable_max_rows()` and there is no guarantee that the vegafusion
-# transforms will get under the 5000 row default limit. So disabling
-# the row limit is the only option.
-altair.data_transformers.disable_max_rows()
-
 stroke_width = 0.75
 # When points are low-density, fill is nicer, or a thicker stroke.
 # But when high-density, there's too much overplotting

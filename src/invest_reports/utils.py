@@ -20,14 +20,6 @@ from pydantic.dataclasses import dataclass
 
 LOGGER = logging.getLogger(__name__)
 
-MATPLOTLIB_PARAMS = {
-    'backend': 'agg',
-    # 'legend.fontsize': 'small',
-    # 'axes.titlesize': 'small',
-    # 'xtick.labelsize': 'small',
-    # 'ytick.labelsize': 'small'
-    }
-plt.rcParams.update(MATPLOTLIB_PARAMS)
 MPL_SAVE_FIG_KWARGS = {
     'format': 'png',
     'bbox_inches': 'tight'
@@ -40,12 +32,6 @@ MPL_SAVE_FIG_KWARGS = {
 #   root font size (default 16px)
 #   savefig with tight bbox layout shrinks the figure after it is sized
 FIGURE_WIDTH = 14.5  # inches; by trial & error
-
-# Globally set the float format used in DataFrames and resulting HTML tables.
-# G indicates Python "general" format, which limits precision
-# (default: 6 significant digits), drops trailing zeros,
-# and uses scientific notation where appropriate.
-pandas.set_option('display.float_format', '{:G}'.format)
 
 # Mapping 'datatype' to colormaps and resampling algorithms
 COLORMAPS = {
